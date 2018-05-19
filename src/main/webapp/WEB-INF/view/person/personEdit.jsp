@@ -12,7 +12,7 @@
 
 	<h1>Please edit personal details:</h1>
 	
-	<form:form method="POST" modelAttribute="author">
+	<form:form method="POST" modelAttribute="person">
 	First Name: <form:input path="firstName"/>
 	<form:errors path="firstName" />
 	<br>
@@ -29,7 +29,6 @@
 	<form:errors path="email" />
 	<br>
 	<input type="submit" value="submit">
-	<form:errors path="*" />
 	</form:form>
 
 </body>

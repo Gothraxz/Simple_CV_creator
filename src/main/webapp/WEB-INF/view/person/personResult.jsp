@@ -10,14 +10,17 @@
 </head>
 <body>
 
-		First Name: <c:out value = "${personDetails.firstName}"/><br>
-		Last Name: <c:out value = "${personDetails.lastName}"/><br>
-		Birth Date: <c:out value = "${personDetails.birthday}"/><br>
-		Phone Number: <c:out value = "${personDetails.phonenumber}"/><br>
-		E-mail: <c:out value = "${personDetails.email}"/><br>
+<h1>Person Details:</h1>
+
+		First Name: <c:out value = "${person.firstName}"/><br>
+		Last Name: <c:out value = "${person.lastName}"/><br>
+		Birth Date: <c:out value = "${person.birthday}"/><br>
+		Phone Number: <c:out value = "${person.phonenumber}"/><br>
+		E-mail: <c:out value = "${person.email}"/><br>
 		<br>
 		<br>
-		<a href="Edit">Edit</a>   <a href="Clear">Delete</a>
+		<a href="Edit"><button>Edit</button></a>
+		<a href="Delete"><button>Delete</button></a>
 
 </body>
 </html>

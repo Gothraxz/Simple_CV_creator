@@ -13,12 +13,12 @@
 	<span>
 		<p>Personal information</p>
 		
-		<c:if test="${null personDetails}">
-			<a href="Create"><button>Create</button></a>
-		</c:if>
-		<c:if test="${not null personDetails}">
+		<%-- <c:if test="${null personDetails}"> --%>
+			<a href="Person_Management/Create"><button>Create</button></a>
+		<%-- </c:if> --%>
+<%-- 		<c:if test="${not null personDetails}">
 			<a href="Edit"><button>Edit</button></a>
-		</c:if>
+		</c:if> --%>
 	</span>
 	
 	<span>

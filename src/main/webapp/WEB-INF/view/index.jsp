@@ -15,21 +15,38 @@
 	</div>
 
 	<div>
-	<h3>Personal information:</h3>
-		First Name: <c:out value = "${personDetails.firstName}"/><br>
-		Last Name: <c:out value = "${personDetails.lastName}"/><br>
-		Birth Date: <c:out value = "${personDetails.birthday}"/><br>
-		Phone Number: <c:out value = "${personDetails.phonenumber}"/><br>
-		E-mail: <c:out value = "${personDetails.email}"/><br>
-	</div>
+	<h3>Person List:</h3>
 	
-	<div>
-	<h3>Address:</h3>
-	</div>
-	
-	<div>
-	<h3>Experience:</h3>
-	</div>
+	<table style="width:100%" >
+		<tr>
+			<th>Full Name</th>
+			<th>Phone Number</th>
+			<th>Email</th>
+			<th>Action</th>
+		</tr>
+		<c:forEach items = "${personItems}" var = "person">
+			<tr>
+				<td align="center" valign="middle">
+					<c:out value = "${person.fullName}"/>
+				</td>
+				<td align="center" valign="middle">
+					<c:out value = "${person.phonenumber}"/>
+				</td>
+				<td align="center" valign="middle">
+					<c:out value = "${person.email}"/>
+				</td>
+				<td align="center" valign="middle">
+					<a href="Person_Management/${person.id}/Details"><button>Details</button></a>
+					<a href="Person_Management/${person.id}/CV"><button>View CV</button></a>
+					<%-- <a href="Person_Management/${person.id}/Edit"><button>Edit</button></a>
+					<a href="Person_Management/${person.id}/Delete"><button>Delete</button></a> --%>
+				</td>
+			</tr>
+		</c:forEach>
+		</table> 
+		<br>
 
+	</div>
+	
 </body>
 </html>

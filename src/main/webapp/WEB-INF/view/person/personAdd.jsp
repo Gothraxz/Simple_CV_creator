@@ -28,7 +28,6 @@
 	<form:errors path="email" />
 	<br>
 	<input type="submit" value="submit">
-	<form:errors path="*" />
 	</form:form>
 	
 </body>

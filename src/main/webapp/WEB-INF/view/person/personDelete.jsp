@@ -10,8 +10,16 @@
 </head>
 <body>
 
-	<h1>Clear all data:</h1>
+	<h1>Delete person:</h1>
 	
+		First Name: <c:out value = "${person.firstName}"/><br>
+		Last Name: <c:out value = "${person.lastName}"/><br>
+		Birth Date: <c:out value = "${person.birthday}"/><br>
+		Phone Number: <c:out value = "${person.phonenumber}"/><br>
+		E-mail: <c:out value = "${person.email}"/><br>
+		<br>
+		
+	Please confirm:
 	<form:form method="POST" modelAttribute="person">
 	<button type="submit">Yes</button>
 	</form:form>
