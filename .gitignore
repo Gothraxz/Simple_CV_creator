@@ -88,7 +88,7 @@ tmp/
 *.bak
 *.swp
 *~.nib
-.properties
+application.properties
 .settings/
 .loadpath
 .recommenders

@@ -1,4 +1,4 @@
-package gothraxz.Simple.CV.creator.entity;
+package gothraxz.Simple.CV.creator.userManagement.address.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

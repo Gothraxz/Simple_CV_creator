@@ -1,4 +1,4 @@
-package gothraxz.Simple.CV.creator.entity;
+package gothraxz.Simple.CV.creator.userManagement.person.entity;
 
 import java.util.Date;
 
