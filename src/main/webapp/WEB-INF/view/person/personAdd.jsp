@@ -9,6 +9,10 @@
 </head>
 <body>
 
+	<span>
+		<a href="/Simple_CV_Creator/index"> <button>Return to main page</button> </a>
+	</span>
+
 	<h1>Please add personal details:</h1>
 	
 	<form:form method="POST" modelAttribute="person">

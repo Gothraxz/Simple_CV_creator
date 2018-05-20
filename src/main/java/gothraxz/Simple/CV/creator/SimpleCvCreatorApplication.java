@@ -1,5 +1,6 @@
-package gothraxz.Simple.CV.creator.userManagement;
+package gothraxz.Simple.CV.creator;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -25,5 +26,10 @@ public class SimpleCvCreatorApplication {
 	    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 	    messageSource.setBasename("classpath:/messages");
 	    return messageSource;
+	}
+	
+	@Bean
+	public ModelMapper modelMapper() {
+	    return new ModelMapper();
 	}
 }

@@ -9,7 +9,7 @@ public interface PersonService {
 
 	void save(Person person);
 
-	Optional findById(long id);
+	Optional<Person> findById(long id);
 	
 	void deleteById(long id);
 

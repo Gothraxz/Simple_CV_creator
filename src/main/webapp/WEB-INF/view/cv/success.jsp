@@ -6,25 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Personal information</title>
+<title>Simple CV Creator - CV</title>
 </head>
 <body>
 
+	<h2>Crated PDF file for ${personDto.fullName}</h2>
+	
 	<span>
 		<a href="/Simple_CV_Creator/index"> <button>Return to main page</button> </a>
 	</span>
-
-<h1>Person Details:</h1>
-
-		First Name: <c:out value = "${person.firstName}"/><br>
-		Last Name: <c:out value = "${person.lastName}"/><br>
-		Birth Date: <c:out value = "${person.birthday}"/><br>
-		Phone Number: <c:out value = "${person.phonenumber}"/><br>
-		E-mail: <c:out value = "${person.email}"/><br>
-		<br>
-		<br>
-		<a href="Edit"><button>Edit</button></a>
-		<a href="Delete"><button>Delete</button></a>
 
 </body>
 </html>
