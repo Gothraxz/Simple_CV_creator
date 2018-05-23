@@ -23,6 +23,8 @@
 	
 	<span>
 		<p>Address</p>
+		
+		<a href="Address_Management/Main"><button>Address Management</button></a>
 	</span>
 	
 	<span>

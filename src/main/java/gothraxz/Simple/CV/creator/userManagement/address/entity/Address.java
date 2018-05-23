@@ -36,7 +36,7 @@ public class Address {
 	private String postalCode;
 
 	@NotEmpty
-	@Size(max = 10)
+	@Size(min = 3, max = 25)
 	private String city;
 	
 	@OneToOne(fetch = FetchType.LAZY)

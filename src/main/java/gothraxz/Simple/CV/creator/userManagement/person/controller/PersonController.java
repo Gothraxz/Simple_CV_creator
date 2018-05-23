@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,14 +26,14 @@ public class PersonController {
 	@Autowired
 	private PersonService personService;
 	
-	@RequestMapping(value = "/Create", method = RequestMethod.GET )
-	public String getPersonForm(Model model) {
+	@GetMapping(value = "/Create")
+	public String createPersonForm(Model model) {
 		model.addAttribute("person", new Person());
 		return "person/personAdd";
 	}
 	
-	@RequestMapping(value = "/Create", method = RequestMethod.POST )
-	public String getPersonForm(@Valid @ModelAttribute Person person, BindingResult result) {
+	@PostMapping(value = "/Create")
+	public String createPersonForm(@Valid @ModelAttribute Person person, BindingResult result) {
 		
 		if(!result.hasErrors()) {
 			personService.save(person);
@@ -42,8 +44,8 @@ public class PersonController {
 		return "redirect:/Simple_CV_Creator/index";
 	}
 	
-	@RequestMapping(value = "{id}/Details", method = RequestMethod.GET )
-	public String getPersonDetails(Model model, @PathVariable long id) {
+	@GetMapping(value = "{id}/Details")
+	public String personDetails(Model model, @PathVariable long id) {
 		
 		Optional<Person> person = personService.findById(id);
 		if(person.isPresent()) {
@@ -53,8 +55,8 @@ public class PersonController {
 		return "person/personResult";
 	}
 	
-	@RequestMapping(value = "{id}/Edit", method = RequestMethod.GET )
-	public String getPersonToEdit(Model model, @PathVariable long id) {
+	@GetMapping(value = "{id}/Edit")
+	public String editPerson(Model model, @PathVariable long id) {
 
 		Optional<Person> person = personService.findById(id);
 		if(person.isPresent()) {
@@ -64,8 +66,8 @@ public class PersonController {
 		return "person/personEdit";
 	}
 	
-	@RequestMapping(value = "{id}/Edit", method = RequestMethod.POST )
-	public String getPersonToEdit(@Valid @ModelAttribute Person person, BindingResult result, 
+	@PostMapping(value = "{id}/Edit")
+	public String editPerson(@Valid @ModelAttribute Person person, BindingResult result, 
 			@PathVariable long id) {
 		
 		if (!result.hasErrors()) {
@@ -76,8 +78,8 @@ public class PersonController {
 		return "person/personEdit";
 	}
 	
-	@RequestMapping(value = "{id}/Delete", method = RequestMethod.GET )
-	public String getPersonToDelete(Model model, @PathVariable long id) {
+	@GetMapping(value = "{id}/Delete")
+	public String deletePerson(Model model, @PathVariable long id) {
 		
 		Optional<Person> person = personService.findById(id);
 		if(person.isPresent()) {
@@ -88,8 +90,8 @@ public class PersonController {
 	}
 	
 
-	@RequestMapping(value = "{id}/Delete", method = RequestMethod.POST )
-	public String getPersonToDelete(@ModelAttribute Person person, @PathVariable long id) {
+	@PostMapping(value = "{id}/Delete")
+	public String deletePerson(@ModelAttribute Person person, @PathVariable long id) {
 		personService.deleteById(id);
 		
 		return "redirect:/Simple_CV_Creator/index";
