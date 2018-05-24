@@ -30,6 +30,11 @@
 	
 	<div>
 	<h3>Address:</h3>
+		Postal Code: <c:out value = "${personDto.address.postalCode}"/><br>
+		City: <c:out value = "${personDto.address.city}"/><br>
+		Street: <c:out value = "${personDto.address.street}"/><br>
+		Address 1: <c:out value = "${personDto.address.buildingNumber}"/><br>
+		Address 2: <c:out value = "${personDto.address.doorNumber}"/><br>
 	</div>
 	
 	<div>

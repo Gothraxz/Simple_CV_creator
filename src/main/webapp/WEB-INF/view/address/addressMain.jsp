@@ -30,14 +30,14 @@
 					<c:out value = "${person.fullName}"/>
 				</td>
 				<td align="center" valign="middle">
-					<c:out value = "${address.city}"/>
+					<c:out value = "${person.address.city}"/>
 				</td>
 				<td align="center" valign="middle">
-					<c:out value = "${address.street}"/>
+					<c:out value = "${person.address.street}"/>
 				</td>
 				<td align="center" valign="middle">
-					<a href="../Address_Management/${address.id}/Details"><button>Address Details</button></a>
-					<a href="../Person_Management/${person.id}/Details"><button>Person Details</button></a>
+					<a href="/Simple_CV_Creator/Address_Management/${person.id}/Details"><button>Address Details</button></a>
+					<a href="/Simple_CV_Creator/Person_Management/${person.id}/Details"><button>Person Details</button></a>
 				</td>
 			</tr>
 		</c:forEach>

@@ -24,7 +24,7 @@
 	<span>
 		<p>Address</p>
 		
-		<a href="Address_Management/Main"><button>Address Management</button></a>
+		<a href="/Simple_CV_Creator/Address_Management/Main"><button>Address Management</button></a>
 	</span>
 	
 	<span>

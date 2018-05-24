@@ -16,6 +16,13 @@
 
 <h1>Address Details:</h1>
 <!-- TODO person name  -->
+
+<c:choose>
+	<c:when test="${empty address}">
+		<p>Address not found, please add new address:</p>
+		<a href="Create"><button>Create</button></a>
+	</c:when>
+	<c:otherwise>
 		Postal Code: <c:out value = "${address.postalCode}"/><br>
 		City: <c:out value = "${address.city}"/><br>
 		Street: <c:out value = "${address.street}"/><br>
@@ -25,6 +32,8 @@
 		<br>
 		<a href="Edit"><button>Edit</button></a>
 		<a href="Delete"><button>Delete</button></a>
+	</c:otherwise>
+</c:choose>
 
 </body>
 </html>

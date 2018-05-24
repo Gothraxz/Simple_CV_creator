@@ -35,17 +35,24 @@ public class AddressController {
 		return "address/addressMain";
 	}
 	
-	@GetMapping(value = "/Create")
-	public String createAddressForm(Model model) {
+	@GetMapping(value = "{id}/Create")
+	public String createAddressForm(Model model, @PathVariable long id) {
 		model.addAttribute("address", new Address());
 		return "address/addressAdd";
 	}
 	
-	@PostMapping(value = "/Create")
-	public String createAddressForm(@Valid @ModelAttribute Address address, BindingResult result) {
+	@PostMapping(value = "{id}/Create")
+	public String createAddressForm(@Valid @ModelAttribute Address address, BindingResult result,
+			@PathVariable long id) {
 		
 		if(!result.hasErrors()) {
-			addressService.save(address);
+			
+			Optional<Person> person = personService.findById(id);
+			if(person.isPresent()) {
+				address.setPerson(person.get());
+				addressService.save(address);				
+			}
+			
 		} else {
 			return "address/addressAdd";
 		}
@@ -56,9 +63,9 @@ public class AddressController {
 	@GetMapping(value = "{id}/Details")
 	public String addressDetails(Model model, @PathVariable long id) {
 		
-		Optional<Address> address = addressService.findById(id);
-		if(address.isPresent()) {
-			model.addAttribute("address", address.get());
+		Optional<Person> person = personService.findById(id);
+		if(person.isPresent()) {
+			model.addAttribute("address", person.get().getAddress());				
 		}
 		
 		return "address/addressResult";
@@ -67,20 +74,24 @@ public class AddressController {
 	@GetMapping(value = "{id}/Edit")
 	public String editAddress(Model model, @PathVariable long id) {
 
-		Optional<Address> address = addressService.findById(id);
-		if(address.isPresent()) {
-			model.addAttribute("address", address.get());
+		Optional<Person> person = personService.findById(id);
+		if(person.isPresent()) {
+			model.addAttribute("address", person.get().getAddress());				
 		}
-		
+
 		return "address/addressEdit";
 	}
 	
 	@PostMapping(value = "{id}/Edit")
 	public String editAddress(@Valid @ModelAttribute Address address, BindingResult result, 
 			@PathVariable long id) {
-		
+
 		if (!result.hasErrors()) {
-			addressService.save(address);
+			Optional<Person> person = personService.findById(id);
+			if(person.isPresent()) {
+				address.setPerson(person.get());
+				addressService.save(address);				
+			}
 			return "redirect:/Simple_CV_Creator/index";
 		}
 		
@@ -90,9 +101,9 @@ public class AddressController {
 	@GetMapping(value = "{id}/Delete")
 	public String deleteAddress(Model model, @PathVariable long id) {
 		
-		Optional<Address> address = addressService.findById(id);
-		if(address.isPresent()) {
-			model.addAttribute("address", address.get());
+		Optional<Person> person = personService.findById(id);
+		if(person.isPresent()) {
+			model.addAttribute("address", person.get().getAddress());				
 		}
 		
 		return "address/addressDelete";
@@ -101,7 +112,13 @@ public class AddressController {
 
 	@PostMapping(value = "{id}/Delete")
 	public String deleteAddress(@ModelAttribute Address address, @PathVariable long id) {
-		addressService.deleteById(id);
+
+		Optional<Person> person = personService.findById(id);
+		if(person.isPresent()) {
+			long addressId = person.get().getAddress().getId();
+			person.get().setAddress(null);
+			addressService.deleteById(addressId);				
+		}
 		
 		return "redirect:/Simple_CV_Creator/index";
 	}

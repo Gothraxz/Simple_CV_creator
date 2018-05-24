@@ -16,6 +16,7 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.TextAlignment;
 
+import gothraxz.Simple.CV.creator.userManagement.address.entity.Address;
 import gothraxz.Simple.CV.creator.userManagement.person.dto.PersonDTO;
 
 @Component
@@ -28,6 +29,67 @@ public class Generator {
 			return;
 		}
 
+		String pdfFile = createFile(personDto);
+		
+		PdfWriter writer = new PdfWriter(pdfFile);
+
+		PdfDocument pdf = new PdfDocument(writer);
+
+		Document document = new Document(pdf);
+
+		document.add(
+				new Paragraph("CV")
+				.setBackgroundColor(Color.GRAY)
+				.setFontColor(Color.WHITE)
+				.setFontSize(24)
+				.setTextAlignment(TextAlignment.CENTER));
+		
+		insertSectionParagraph(document, "Personal information:");
+		
+		insertParagraph(document, "First name: ", personDto.getFirstName());
+		insertParagraph(document, "Last name: ", personDto.getLastName());
+		insertParagraph(document, "Day of birth: ", personDto.getBirthday().toString());
+		insertParagraph(document, "Phone number: ", personDto.getPhonenumber());
+		insertParagraph(document, "E-mail: ", personDto.getEmail());
+		
+		insertSectionParagraph(document, "Address information:");
+		
+		Address address = personDto.getAddress();
+		
+		insertParagraph(document, "Postal Code: ", address.getPostalCode());
+		insertParagraph(document, "City: ", address.getCity());
+		insertParagraph(document, "Street: ", address.getStreet());
+		insertParagraph(document, "Address 1: ", address.getBuildingNumber());
+		insertParagraph(document, "Address 2: ", address.getDoorNumber());
+		
+		document.close();
+	}
+	
+	private void insertSectionParagraph(Document document, String label) {
+
+		Paragraph paragraph = new Paragraph();
+		Text labelPart = new Text(label)
+				.setBold()
+				.setUnderline()
+				.setFontSize(18);
+		paragraph.add(labelPart);
+		document.add(paragraph);
+		
+	}
+
+	private void insertParagraph(Document document, 
+			String label, String text) {
+		
+		Paragraph paragraph = new Paragraph();
+		Text labelPart = new Text(label).setBold();
+		Text textPart = new Text(text);
+		paragraph.add(labelPart).add(textPart);
+		document.add(paragraph);
+		
+	}
+	
+	private String createFile(PersonDTO personDto) {
+		
 		String fileName = DESTINATION_FOLDER 
 				+ personDto.getFirstName() 
 				+ "_" 
@@ -50,60 +112,9 @@ public class Generator {
 		
 		file = new File(fileName);
 		file.getParentFile().mkdirs();
-
-		PdfWriter writer = new PdfWriter(fileName);
-
-		PdfDocument pdf = new PdfDocument(writer);
-
-		Document document = new Document(pdf);
-
-		document.add(
-				new Paragraph("CV")
-				.setBackgroundColor(Color.GRAY)
-				.setFontColor(Color.WHITE)
-				.setFontSize(24)
-				.setTextAlignment(TextAlignment.CENTER));
 		
-		Paragraph personalInformationParagraph = new Paragraph();
-		Text personalInformationLabel = new Text("Personal information: ")
-				.setBold()
-				.setUnderline()
-				.setFontSize(18);
-		personalInformationParagraph.add(personalInformationLabel);
-		document.add(personalInformationParagraph);
+		return fileName;
 		
-		Paragraph firstNameParagraph = new Paragraph();
-		Text firstNameLabel = new Text("First name: ").setBold();
-		Text firstNameText = new Text(personDto.getFirstName());
-		firstNameParagraph.add(firstNameLabel).add(firstNameText);
-		document.add(firstNameParagraph);
-		
-		Paragraph lastNameParagraph = new Paragraph();
-		Text lastNameLabel = new Text("Last name: ").setBold();
-		Text lastNameText = new Text(personDto.getLastName());
-		lastNameParagraph.add(lastNameLabel).add(lastNameText);
-		document.add(lastNameParagraph);
-		
-		Paragraph birthdayParagraph = new Paragraph();
-		Text birthdayLabel = new Text("Day of birth: ").setBold();
-		Text birthdayText = new Text(personDto.getBirthday().toString());
-		birthdayParagraph.add(birthdayLabel).add(birthdayText);
-		document.add(birthdayParagraph);
-		
-		Paragraph phoneNumberParagraph = new Paragraph();
-		Text phoneNumberLabel = new Text("Phone number: ").setBold();
-		Text phoneNumberText = new Text(personDto.getPhonenumber());
-		phoneNumberParagraph.add(phoneNumberLabel).add(phoneNumberText);
-		document.add(phoneNumberParagraph);
-		
-		Paragraph emailParagraph = new Paragraph();
-		Text emailLabel = new Text("Email: ").setBold();
-		Text emailText = new Text(personDto.getEmail());
-		emailParagraph.add(emailLabel).add(emailText);
-		document.add(emailParagraph);
-		
-		
-		document.close();
 	}
 
 }
