@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import gothraxz.Simple.CV.creator.userManagement.address.entity.Address;
 import gothraxz.Simple.CV.creator.userManagement.address.repository.AddressRepository;
 import gothraxz.Simple.CV.creator.userManagement.address.service.AddressService;
-import gothraxz.Simple.CV.creator.userManagement.person.entity.Person;
 
 @Service
 public class AddressServiceImpl implements AddressService{
