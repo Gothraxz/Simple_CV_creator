@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import gothraxz.Simple.CV.creator.userManagement.person.entity.Person;
 
 @Entity
@@ -25,12 +27,12 @@ public class Experience {
 	@JoinColumn(name = "person_id")
 	private Person person;
 	
-	@Column(columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern="dd-MM-yyyy")
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
 	
-	@Column(columnDefinition="DATETIME")
-	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern="dd-MM-yyyy")
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	
 	private String companyName;
@@ -57,19 +59,19 @@ public class Experience {
 		this.person = person;
 	}
 
-	public Date getStart() {
+	public Date getStartDate() {
 		return startDate;
 	}
 
-	public void setStart(Date start) {
+	public void setStartDate(Date start) {
 		this.startDate = start;
 	}
 
-	public Date getEnd() {
+	public Date getEndDate() {
 		return endDate;
 	}
 
-	public void setEnd(Date end) {
+	public void setEndDate(Date end) {
 		this.endDate = end;
 	}
 

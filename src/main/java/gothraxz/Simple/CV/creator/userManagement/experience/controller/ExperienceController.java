@@ -37,19 +37,19 @@ public class ExperienceController {
 		return "experience/experienceMain";
 	}
 	
-	@GetMapping(value = "{id}/Create")
-	public String createExperienceForm(Model model, @PathVariable long id) {
+	@GetMapping(value = "{personId}/Create")
+	public String createExperienceForm(Model model, @PathVariable long personId) {
 		model.addAttribute("experience", new Experience());
 		return "experience/experienceAdd";
 	}
 	
-	@PostMapping(value = "{id}/Create")
+	@PostMapping(value = "{personId}/Create")
 	public String createExperienceForm(@Valid @ModelAttribute Experience experience, BindingResult result,
-			@PathVariable long id) {
+			@PathVariable long personId) {
 		
 		if(!result.hasErrors()) {
 			
-			Optional<Person> person = personService.findById(id);
+			Optional<Person> person = personService.findById(personId);
 			if(person.isPresent()) {
 				experience.setPerson(person.get());
 				experienceService.save(experience);				
@@ -62,10 +62,10 @@ public class ExperienceController {
 		return "redirect:/Simple_CV_Creator/index";
 	}
 	
-	@GetMapping(value = "{id}/Details")
-	public String experienceDetails(Model model, @PathVariable long id) {
+	@GetMapping(value = "{personId}/Details")
+	public String experienceDetails(Model model, @PathVariable long personId) {
 		
-		Optional<Person> person = personService.findById(id);
+		Optional<Person> person = personService.findById(personId);
 		if(person.isPresent()) {
 			model.addAttribute("experience", person.get().getExperience());				
 		}
@@ -73,23 +73,28 @@ public class ExperienceController {
 		return "experience/experienceResult";
 	}
 	
-	@GetMapping(value = "{id}/Edit")
-	public String editExperience(Model model, @PathVariable long id) {
+	@GetMapping(value = "{personId}/Edit/{id}")
+	public String editExperience(Model model, @PathVariable long personId, @PathVariable long id) {
 
-		Optional<Person> person = personService.findById(id);
-		if(person.isPresent()) {
-			model.addAttribute("experience", person.get().getExperience());				
+		Optional<Person> person = personService.findById(personId);
+		Optional<Experience> experience = experienceService.findById(id);
+		
+		if(person.isPresent() && experience.isPresent()) {
+			if (person.get().getExperience().contains(experience.get())) {
+				model.addAttribute("experience", experience);
+			}
 		}
 
 		return "experience/experienceEdit";
 	}
 	
-	@PostMapping(value = "{id}/Edit")
-	public String editExperience(@Valid @ModelAttribute Experience experience, BindingResult result, 
-			@PathVariable long id) {
+	@PostMapping(value = "{personId}/Edit/{id}")
+	public String editExperience(@Valid @ModelAttribute Experience experience, 
+			BindingResult result, 
+			@PathVariable long personId) {
 
 		if (!result.hasErrors()) {
-			Optional<Person> person = personService.findById(id);
+			Optional<Person> person = personService.findById(personId);
 			if(person.isPresent()) {
 				experience.setPerson(person.get());
 				experienceService.save(experience);				
@@ -100,30 +105,33 @@ public class ExperienceController {
 		return "experience/experienceEdit";
 	}
 	
-	@GetMapping(value = "{id}/Delete")
-	public String deleteExperience(Model model, @PathVariable long id) {
+	@GetMapping(value = "{personId}/Delete/{id}")
+	public String deleteExperience(Model model, @PathVariable long personId,
+			@PathVariable long id) {
 		
-		Optional<Person> person = personService.findById(id);
-		if(person.isPresent()) {
-			model.addAttribute("experience", person.get().getExperience());				
+		Optional<Person> person = personService.findById(personId);
+		Optional<Experience> experience = experienceService.findById(id);
+		
+		if(person.isPresent() && experience.isPresent()) {
+			if (person.get().getExperience().contains(experience.get())) {
+				model.addAttribute("experience", experience.get());
+			}
 		}
 		
 		return "experience/experienceDelete";
 	}
 	
 
-	@PostMapping(value = "{id}/Delete")
-	public String deleteExperience(@ModelAttribute Experience experience, @PathVariable long id) {
+	@PostMapping(value = "{personId}/Delete/{id}")
+	public String deleteExperience(@ModelAttribute Experience experience, 
+			@PathVariable long personId, 
+			@PathVariable long id) {
 
-		Optional<Person> person = personService.findById(id);
-		if(person.isPresent()) {
-			List<Experience> experiences = person.get().getExperience();
-			person.get().setExperience(null);
-			
-			for (Experience exp : experiences) {
-				experienceService.deleteById(exp.getId());
-			}
-							
+		Optional<Person> person = personService.findById(personId);
+		Optional<Experience> exp = experienceService.findById(experience.getId());
+		
+		if(person.isPresent() && exp.isPresent()) {
+			experienceService.deleteById(id);
 		}
 		
 		return "redirect:/Simple_CV_Creator/index";

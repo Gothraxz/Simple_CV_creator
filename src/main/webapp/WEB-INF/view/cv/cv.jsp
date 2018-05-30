@@ -39,6 +39,33 @@
 	
 	<div>
 	<h3>Experience:</h3>
+		<table style="width:100%" >
+			<tr>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Details</th>
+				<th>Task Description</th>
+			</tr>
+			<c:forEach items = "${personDto.experiences}" var = "exp">
+				<tr>
+					<td align="center" valign="middle">
+						<c:out value = "${exp.startDate}"/>
+					</td>
+					<td align="center" valign="middle">
+						<c:out value = "${exp.endDate}"/>
+					</td>
+					<td align="center" valign="middle">
+						<c:out value = "${exp.companyName}"/><br>
+						<c:out value = "${exp.city}"/><br>
+						<c:out value = "${exp.jobTitle}"/><br>
+						<br>
+					</td>
+					<td align="center" valign="middle">
+						<c:out value = "${exp.taskDescription}"/>
+					</td>
+				</tr>
+			</c:forEach>
+		</table> 
 	</div>
 
 </body>

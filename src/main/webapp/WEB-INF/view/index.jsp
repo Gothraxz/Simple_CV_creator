@@ -15,6 +15,10 @@
 	</div>
 
 	<div>
+		<a href="Person_Management/Create"><button>Create new</button></a>
+	</div>
+
+	<div>
 	<h3>Person List:</h3>
 	
 	<table style="width:100%" >

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -13,10 +14,12 @@ import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.TextAlignment;
 
 import gothraxz.Simple.CV.creator.userManagement.address.entity.Address;
+import gothraxz.Simple.CV.creator.userManagement.experience.entity.Experience;
 import gothraxz.Simple.CV.creator.userManagement.person.dto.PersonDTO;
 
 @Component
@@ -62,7 +65,46 @@ public class Generator {
 		insertParagraph(document, "Address 1: ", address.getBuildingNumber());
 		insertParagraph(document, "Address 2: ", address.getDoorNumber());
 		
+		insertSectionParagraph(document, "Experience:");
+		
+		List<Experience> experience = personDto.getExperiences();
+		
+		insertExperienceTable(document, experience);
+		
 		document.close();
+	}
+	
+	private void insertExperienceTable (Document document, List<Experience> experience) {
+		
+		Table table = new Table (3);
+		
+		table.addHeaderCell("Period:");
+		table.addHeaderCell("Company:");
+		table.addHeaderCell("Description");
+		
+		for (Experience exp : experience) {
+			String startDate = exp.getStartDate().toString();
+			String endDate;
+			
+			if (exp.getEndDate() == null) {
+				endDate = "present";
+			} else {
+				endDate = exp.getEndDate().toString();
+			}
+			
+			String company = exp.getCompanyName() 
+					+ "\n" 
+					+ exp.getCity() 
+					+ "\n" 
+					+ exp.getJobTitle();
+			
+			String taskDescription = exp.getTaskDescription();
+			
+			table.addCell(startDate + " - " + endDate);
+			table.addCell(company);
+			table.addCell(taskDescription);
+		}
+		
 	}
 	
 	private void insertSectionParagraph(Document document, String label) {

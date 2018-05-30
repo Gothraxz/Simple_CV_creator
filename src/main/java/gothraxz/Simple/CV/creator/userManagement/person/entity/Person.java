@@ -54,10 +54,11 @@ public class Person {
 	@Email
 	private String email;
 
-	@OneToOne(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true,
+			fetch = FetchType.LAZY)
 	private Address address;
 
-	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Experience> experiences = new ArrayList<>();
 
 	public long getId() {

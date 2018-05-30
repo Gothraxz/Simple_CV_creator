@@ -23,15 +23,36 @@
 		<a href="Create"><button>Create</button></a>
 	</c:when>
 	<c:otherwise>
-		Postal Code: <c:out value = "${address.postalCode}"/><br>
-		City: <c:out value = "${address.city}"/><br>
-		Street: <c:out value = "${address.street}"/><br>
-		Address 1: <c:out value = "${address.buildingNumber}"/><br>
-		Address 2: <c:out value = "${address.doorNumber}"/><br>
-		<br>
-		<br>
-		<a href="Edit"><button>Edit</button></a>
-		<a href="Delete"><button>Delete</button></a>
+		<a href="Create"><button>Add more</button></a>
+	<table style="width:100%" >
+		<tr>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Details</th>
+			<th>Action</th>
+		</tr>
+		<c:forEach items = "${experience}" var = "exp">
+			<tr>
+				<td align="center" valign="middle">
+					<c:out value = "${exp.startDate}"/>
+				</td>
+				<td align="center" valign="middle">
+					<c:out value = "${exp.endDate}"/>
+				</td>
+				<td align="center" valign="middle">
+					<c:out value = "${exp.companyName}"/><br>
+					<c:out value = "${exp.city}"/><br>
+					<c:out value = "${exp.jobTitle}"/><br>
+					<br>
+					<c:out value = "${exp.taskDescription}"/>
+				</td>
+				<td align="center" valign="middle">
+					<a href="Edit/${exp.id}"><button>Edit</button></a>
+					<a href="Delete/${exp.id}"><button>Delete</button></a>
+				</td>
+			</tr>
+		</c:forEach>
+		</table> 
 	</c:otherwise>
 </c:choose>
 

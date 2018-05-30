@@ -10,26 +10,21 @@
 </head>
 <body>
 
+<div>
 	<span>
-		<p>Personal information</p>
-		
-		<%-- <c:if test="${null personDetails}"> --%>
-			<a href="Person_Management/Create"><button>Create</button></a>
-		<%-- </c:if> --%>
-<%-- 		<c:if test="${not null personDetails}">
-			<a href="Edit"><button>Edit</button></a>
-		</c:if> --%>
+		<a href="/Simple_CV_Creator/index"><button>Person Management</button></a>
 	</span>
 	
 	<span>
-		<p>Address</p>
-		
 		<a href="/Simple_CV_Creator/Address_Management/Main"><button>Address Management</button></a>
 	</span>
 	
 	<span>
-		<p>Experience</p>
+		<a href="/Simple_CV_Creator/Experience_Management/Main"><button>Experience Management</button></a>
 	</span>
+	
+	<br><br>
+</div>
 
 </body>
 </html>
