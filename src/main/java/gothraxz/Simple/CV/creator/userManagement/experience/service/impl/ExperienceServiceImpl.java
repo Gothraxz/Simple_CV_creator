@@ -1,6 +1,7 @@
 package gothraxz.Simple.CV.creator.userManagement.experience.service.impl;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,11 @@ public class ExperienceServiceImpl implements ExperienceService {
 	@Override
 	public Collection<Experience> findAll() {
 		return experienceRepository.findAll();
+	}
+
+	@Override
+	public List<Experience> findAllByPersonId(long id) {
+		return experienceRepository.findAllByPersonId(id);
 	}
 	
 }

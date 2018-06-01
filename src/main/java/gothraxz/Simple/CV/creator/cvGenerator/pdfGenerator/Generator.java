@@ -10,13 +10,17 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.itextpdf.kernel.color.Color;
+import com.itextpdf.kernel.geom.PageSize;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.border.Border;
+import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.TextAlignment;
+import com.itextpdf.layout.property.UnitValue;
 
 import gothraxz.Simple.CV.creator.userManagement.address.entity.Address;
 import gothraxz.Simple.CV.creator.userManagement.experience.entity.Experience;
@@ -38,7 +42,7 @@ public class Generator {
 
 		PdfDocument pdf = new PdfDocument(writer);
 
-		Document document = new Document(pdf);
+		Document document = new Document(pdf, PageSize.A4);
 
 		document.add(
 				new Paragraph("CV")
@@ -76,15 +80,25 @@ public class Generator {
 	
 	private void insertExperienceTable (Document document, List<Experience> experience) {
 		
-		Table table = new Table (3);
+		Table table = new Table (UnitValue.createPercentArray(new float[]{30,30,40}));
+		table.setWidth(UnitValue.createPercentValue(100));
 		
-		table.addHeaderCell("Period:");
-		table.addHeaderCell("Company:");
-		table.addHeaderCell("Description");
+		table.addHeaderCell(new Cell().add("Period:")
+				.setBorder(Border.NO_BORDER).setBold());
+		table.addHeaderCell(new Cell().add("Company:")
+				.setBorder(Border.NO_BORDER).setBold());
+		table.addHeaderCell(new Cell().add("Description:")
+				.setBorder(Border.NO_BORDER).setBold());
 		
 		for (Experience exp : experience) {
-			String startDate = exp.getStartDate().toString();
+			String startDate;
 			String endDate;
+			
+			if (exp.getStartDate() == null) {
+				startDate = "N/A";
+			} else {
+				startDate = exp.getStartDate().toString();
+			}
 			
 			if (exp.getEndDate() == null) {
 				endDate = "present";
@@ -100,10 +114,16 @@ public class Generator {
 			
 			String taskDescription = exp.getTaskDescription();
 			
-			table.addCell(startDate + " - " + endDate);
-			table.addCell(company);
-			table.addCell(taskDescription);
+			table.addCell(new Cell().add(startDate + "\n - \n" + endDate)
+					.setBorder(Border.NO_BORDER));
+			table.addCell(new Cell().add(company)
+					.setBorder(Border.NO_BORDER));
+			table.addCell(new Cell().add(taskDescription)
+					.setBorder(Border.NO_BORDER));
+			
 		}
+		
+		document.add(table);
 		
 	}
 	
