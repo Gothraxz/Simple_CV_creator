@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import gothraxz.Simple.CV.creator.userManagement.address.entity.Address;
+import gothraxz.Simple.CV.creator.userManagement.education.entity.Education;
 import gothraxz.Simple.CV.creator.userManagement.experience.entity.Experience;
 import gothraxz.Simple.CV.creator.userManagement.person.service.PersonService;
 
@@ -20,6 +21,7 @@ public class PersonDTO {
 	private String email;
 	private Address address;
 	private List<Experience> experiences;
+	private List<Education> education;
 	
 	public PersonDTO() {
 		
@@ -105,6 +107,14 @@ public class PersonDTO {
 		this.experiences = experiences;
 	}
 	
+	public List<Education> getEducation() {
+		return education;
+	}
+
+	public void setEducation(List<Education> education) {
+		this.education = education;
+	}
+
 	public String getFullName() {
 		return this.firstName + " " + this.lastName;
 	}

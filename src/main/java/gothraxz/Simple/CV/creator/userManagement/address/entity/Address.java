@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -20,23 +21,23 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotEmpty
-	@Size(min = 3, max = 50)
+	@NotBlank
+	@Size(min = 3, max = 50, message = "{size.address.sreet}")
 	private String street;
 	
-	@NotEmpty
-	@Size(max = 10)
+	@NotBlank
+	@Size(max = 10, message = "{size.address.buildingNumber}")
 	private String buildingNumber;
 
-	@Size(max = 10)
+	@Size(max = 10, message = "{size.address.doorNumber}")
 	private String doorNumber;
 	
 	@NotEmpty
-	@Pattern(regexp = "^\\d{2}-?\\d{3}$")
+	@Pattern(regexp = "^\\d{2}-?\\d{3}$", message = "{pattern.address.postalCode}")
 	private String postalCode;
 
-	@NotEmpty
-	@Size(min = 3, max = 25)
+	@NotBlank
+	@Size(min = 3, max = 25, message = "{size.address.city}")
 	private String city;
 	
 	@OneToOne(fetch = FetchType.LAZY)

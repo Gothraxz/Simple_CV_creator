@@ -15,6 +15,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -24,6 +25,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import gothraxz.Simple.CV.creator.userManagement.address.entity.Address;
+import gothraxz.Simple.CV.creator.userManagement.education.entity.Education;
 import gothraxz.Simple.CV.creator.userManagement.experience.entity.Experience;
 
 @Entity
@@ -33,11 +35,11 @@ public class Person {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	@NotEmpty
+	@NotBlank
 	@Size(min = 3, max = 25, message = "{size.person.firstName}")
 	private String firstName;
 
-	@NotEmpty
+	@NotBlank
 	@Size(min = 3, max = 50, message = "{size.person.lastName}")
 	private String lastName;
 
@@ -60,6 +62,9 @@ public class Person {
 
 	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Experience> experiences = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Education> education = new ArrayList<>();
 
 	public long getId() {
 		return id;
@@ -121,12 +126,20 @@ public class Person {
 		this.address = address;
 	}
 
-	public List<Experience> getExperience() {
+	public List<Experience> getExperiences() {
 		return experiences;
 	}
 
-	public void setExperience(List<Experience> experience) {
-		this.experiences = experience;
+	public void setExperiences(List<Experience> experiences) {
+		this.experiences = experiences;
+	}
+
+	public List<Education> getEducation() {
+		return education;
+	}
+
+	public void setEducation(List<Education> education) {
+		this.education = education;
 	}
 
 }

@@ -1,4 +1,4 @@
-package gothraxz.Simple.CV.creator.userManagement.experience.entity;
+package gothraxz.Simple.CV.creator.userManagement.education.entity;
 
 import java.util.Date;
 
@@ -17,12 +17,11 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import gothraxz.Simple.CV.creator.userManagement.education.entity.Education;
 import gothraxz.Simple.CV.creator.userManagement.person.entity.Person;
 
 @Entity
-public class Experience implements Comparable<Experience> {
-	
+public class Education implements Comparable<Education> {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -42,17 +41,17 @@ public class Experience implements Comparable<Experience> {
 	private Date endDate;
 	
 	@NotBlank
-	private String companyName;
+	private String schoolName;
 	
 	@NotBlank
-	@Size(min = 3, max = 25, message = "{size.experience.city}")
+	@Size(min = 3, max = 25, message = "{size.education.city}")
 	private String city;
 	
 	@NotBlank
-	private String jobTitle;
+	private String grade;
 	
 	@NotBlank
-	private String taskDescription;
+	private String direction;
 
 	public long getId() {
 		return id;
@@ -86,12 +85,12 @@ public class Experience implements Comparable<Experience> {
 		this.endDate = end;
 	}
 
-	public String getCompanyName() {
-		return companyName;
+	public String getSchoolName() {
+		return schoolName;
 	}
 
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
+	public void setSchoolName(String companyName) {
+		this.schoolName = companyName;
 	}
 
 	public String getCity() {
@@ -102,24 +101,24 @@ public class Experience implements Comparable<Experience> {
 		this.city = city;
 	}
 
-	public String getJobTitle() {
-		return jobTitle;
+	public String getGrade() {
+		return grade;
 	}
 
-	public void setJobTitle(String jobTitle) {
-		this.jobTitle = jobTitle;
+	public void setGrade(String jobTitle) {
+		this.grade = jobTitle;
 	}
 
-	public String getTaskDescription() {
-		return taskDescription;
+	public String getDirection() {
+		return direction;
 	}
 
-	public void setTaskDescription(String taskDescription) {
-		this.taskDescription = taskDescription;
+	public void setDirection(String taskDescription) {
+		this.direction = taskDescription;
 	}
-	
+
 	@Override
-	public int compareTo(Experience o) {
+	public int compareTo(Education o) {
 		return getStartDate().compareTo(o.getStartDate());
 	}
 	

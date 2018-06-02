@@ -46,5 +46,10 @@ public class ExperienceServiceImpl implements ExperienceService {
 	public List<Experience> findAllByPersonId(long id) {
 		return experienceRepository.findAllByPersonId(id);
 	}
+
+	@Override
+	public List<Experience> findAllByPersonIdOrderByStartDateDesc(long id) {
+		return experienceRepository.findAllByPersonIdOrderByStartDateDesc(id);
+	}
 	
 }

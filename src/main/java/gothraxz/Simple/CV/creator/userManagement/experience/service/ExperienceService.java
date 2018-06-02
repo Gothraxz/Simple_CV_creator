@@ -17,5 +17,7 @@ public interface ExperienceService {
 	Collection<Experience> findAll();
 	
 	List<Experience> findAllByPersonId(long id);
+	
+	List<Experience> findAllByPersonIdOrderByStartDateDesc(long id);
 
 }

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -23,6 +25,7 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 
 import gothraxz.Simple.CV.creator.userManagement.address.entity.Address;
+import gothraxz.Simple.CV.creator.userManagement.education.entity.Education;
 import gothraxz.Simple.CV.creator.userManagement.experience.entity.Experience;
 import gothraxz.Simple.CV.creator.userManagement.person.dto.PersonDTO;
 
@@ -59,23 +62,90 @@ public class Generator {
 		insertParagraph(document, "Phone number: ", personDto.getPhonenumber());
 		insertParagraph(document, "E-mail: ", personDto.getEmail());
 		
-		insertSectionParagraph(document, "Address information:");
+		Address address = personDto.getAddress();		
 		
-		Address address = personDto.getAddress();
+		if (address != null) {
+			
+			insertSectionParagraph(document, "Address information:");
+			
+			insertParagraph(document, "Postal Code: ", address.getPostalCode());
+			insertParagraph(document, "City: ", address.getCity());
+			insertParagraph(document, "Street: ", address.getStreet());
+			insertParagraph(document, "Address 1: ", address.getBuildingNumber());
+			insertParagraph(document, "Address 2: ", address.getDoorNumber());
+			
+		}
 		
-		insertParagraph(document, "Postal Code: ", address.getPostalCode());
-		insertParagraph(document, "City: ", address.getCity());
-		insertParagraph(document, "Street: ", address.getStreet());
-		insertParagraph(document, "Address 1: ", address.getBuildingNumber());
-		insertParagraph(document, "Address 2: ", address.getDoorNumber());
+		List<Education> education = personDto.getEducation();
 		
-		insertSectionParagraph(document, "Experience:");
-		
+		if (!education.isEmpty()) {
+			
+			insertSectionParagraph(document, "Education:");
+			
+			insertEducationTable(document, education);
+			
+		}
+
 		List<Experience> experience = personDto.getExperiences();
 		
-		insertExperienceTable(document, experience);
+		if (!experience.isEmpty()) {
+			
+			insertSectionParagraph(document, "Experience:");
+			
+			insertExperienceTable(document, experience);
+			
+		}
 		
 		document.close();
+	}
+	
+	private void insertEducationTable (Document document, List<Education> education) {
+		
+		Table table = new Table (UnitValue.createPercentArray(new float[]{30,35,35}));
+		table.setWidth(UnitValue.createPercentValue(100));
+		
+		table.addHeaderCell(new Cell().add("Period:")
+				.setBorder(Border.NO_BORDER).setBold());
+		table.addHeaderCell(new Cell().add("School / University:")
+				.setBorder(Border.NO_BORDER).setBold());
+		table.addHeaderCell(new Cell().add("Description:")
+				.setBorder(Border.NO_BORDER).setBold());
+		
+		for (Education edu : education) {
+			String startDate;
+			String endDate;
+			
+			if (edu.getStartDate() == null) {
+				startDate = "N/A";
+			} else {
+				startDate = edu.getStartDate().toString();
+			}
+			
+			if (edu.getEndDate() == null) {
+				endDate = "present";
+			} else {
+				endDate = edu.getEndDate().toString();
+			}
+			
+			String school = edu.getSchoolName()
+					+ "\n" 
+					+ edu.getCity(); 
+			
+			String details = edu.getDirection() 
+					+ "\n" 
+					+ edu.getGrade();
+			
+			table.addCell(new Cell().add(startDate + "\n - \n" + endDate)
+					.setBorder(Border.NO_BORDER));
+			table.addCell(new Cell().add(school)
+					.setBorder(Border.NO_BORDER));
+			table.addCell(new Cell().add(details)
+					.setBorder(Border.NO_BORDER));
+			
+		}
+		
+		document.add(table);
+		
 	}
 	
 	private void insertExperienceTable (Document document, List<Experience> experience) {

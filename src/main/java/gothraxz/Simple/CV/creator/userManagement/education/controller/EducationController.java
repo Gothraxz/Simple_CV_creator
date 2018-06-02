@@ -1,4 +1,4 @@
-package gothraxz.Simple.CV.creator.userManagement.experience.controller;
+package gothraxz.Simple.CV.creator.userManagement.education.controller;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -15,126 +15,127 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import gothraxz.Simple.CV.creator.userManagement.education.entity.Education;
+import gothraxz.Simple.CV.creator.userManagement.education.service.EducationService;
 import gothraxz.Simple.CV.creator.userManagement.experience.entity.Experience;
-import gothraxz.Simple.CV.creator.userManagement.experience.service.ExperienceService;
 import gothraxz.Simple.CV.creator.userManagement.person.entity.Person;
 import gothraxz.Simple.CV.creator.userManagement.person.service.PersonService;
 
 @Controller
-@RequestMapping(value = "/Simple_CV_Creator/Experience_Management")
-public class ExperienceController {
+@RequestMapping(value = "/Simple_CV_Creator/Education_Management")
+public class EducationController {
 
 
 	@Autowired
-	private ExperienceService experienceService;
+	private EducationService educationService;
 	
 	@Autowired
 	private PersonService personService;
 
 	@GetMapping(value = "/Main")
-	public String experienceMainPage(Model model) {
-		return "experience/experienceMain";
+	public String educationMainPage(Model model) {
+		return "education/educationMain";
 	}
 	
 	@GetMapping(value = "{personId}/Create")
-	public String createExperienceForm(Model model, @PathVariable long personId) {
-		model.addAttribute("experience", new Experience());
-		return "experience/experienceAdd";
+	public String createEducationForm(Model model, @PathVariable long personId) {
+		model.addAttribute("education", new Education());
+		return "education/educationAdd";
 	}
 	
 	@PostMapping(value = "{personId}/Create")
-	public String createExperienceForm(@Valid @ModelAttribute Experience experience, BindingResult result,
+	public String createEducationForm(@Valid @ModelAttribute Education education, BindingResult result,
 			@PathVariable long personId) {
 		
 		if(!result.hasErrors()) {
 			
 			Optional<Person> person = personService.findById(personId);
 			if(person.isPresent()) {
-				experience.setPerson(person.get());
-				experienceService.save(experience);				
+				education.setPerson(person.get());
+				educationService.save(education);				
 			}
 			
 		} else {
-			return "experience/experienceAdd";
+			return "education/educationAdd";
 		}
 		
 		return "redirect:/Simple_CV_Creator/index";
 	}
 	
 	@GetMapping(value = "{personId}/Details")
-	public String experienceDetails(Model model, @PathVariable long personId) {
+	public String educationDetails(Model model, @PathVariable long personId) {
 		
 		Optional<Person> person = personService.findById(personId);
 		if(person.isPresent()) {
-			model.addAttribute("experience", person.get().getExperiences());				
+			model.addAttribute("education", person.get().getEducation());				
 		}
 		
-		return "experience/experienceResult";
+		return "education/educationResult";
 	}
 	
 	@GetMapping(value = "{personId}/Edit/{id}")
-	public String editExperience(Model model, @PathVariable long personId, @PathVariable long id) {
+	public String editEducation(Model model, @PathVariable long personId, @PathVariable long id) {
 
 		Optional<Person> person = personService.findById(personId);
-		Optional<Experience> experience = experienceService.findById(id);
+		Optional<Education> education = educationService.findById(id);
 		
-		if(person.isPresent() && experience.isPresent()) {
-			if (person.get().getExperiences().contains(experience.get())) {
-				model.addAttribute("experience", experience);
+		if(person.isPresent() && education.isPresent()) {
+			if (person.get().getEducation().contains(education.get())) {
+				model.addAttribute("education", education);
 			}
 		}
 
-		return "experience/experienceEdit";
+		return "education/educationEdit";
 	}
 	
 	@PostMapping(value = "{personId}/Edit/{id}")
-	public String editExperience(@Valid @ModelAttribute Experience experience, 
+	public String editEducation(@Valid @ModelAttribute Education education, 
 			BindingResult result, 
 			@PathVariable long personId) {
 
 		if (!result.hasErrors()) {
 			Optional<Person> person = personService.findById(personId);
 			if(person.isPresent()) {
-				experience.setPerson(person.get());
-				experienceService.save(experience);				
+				education.setPerson(person.get());
+				educationService.save(education);				
 			}
 			return "redirect:/Simple_CV_Creator/index";
 		}
 		
-		return "experience/experienceEdit";
+		return "education/educationEdit";
 	}
 	
 	@GetMapping(value = "{personId}/Delete/{id}")
-	public String deleteExperience(Model model, @PathVariable long personId,
+	public String deleteEducation(Model model, @PathVariable long personId,
 			@PathVariable long id) {
 		
 		Optional<Person> person = personService.findById(personId);
-		Optional<Experience> experience = experienceService.findById(id);
+		Optional<Education> education = educationService.findById(id);
 		
-		if (person == null || experience == null) {
+		if (person == null || education == null) {
 			return "error/wrongPathVariable";
 		}
 		
-		if(person.isPresent() && experience.isPresent()) {
-			if (person.get().getExperiences().contains(experience.get())) {
-				model.addAttribute("experience", experience.get());
+		if(person.isPresent() && education.isPresent()) {
+			if (person.get().getEducation().contains(education.get())) {
+				model.addAttribute("education", education.get());
 			}
 		}
 		
-		return "experience/experienceDelete";
+		return "education/educationDelete";
 	}
 	
 
 	@PostMapping(value = "{personId}/Delete/{id}")
-	public String deleteExperience(@ModelAttribute Experience experience, 
+	public String deleteEducation(@ModelAttribute Education education, 
 			@PathVariable long personId, 
 			@PathVariable long id) {
 
 		Optional<Person> person = personService.findById(personId);
-		Optional<Experience> exp = experienceService.findById(experience.getId());
+		Optional<Education> edu = educationService.findById(education.getId());
 		
-		if(person.isPresent() && exp.isPresent()) {
-			experienceService.deleteById(id);
+		if(person.isPresent() && edu.isPresent()) {
+			educationService.deleteById(id);
 		}
 		
 		return "redirect:/Simple_CV_Creator/index";
@@ -145,9 +146,9 @@ public class ExperienceController {
 		return (Collection<Person>) personService.findAll();
 	}
 
-	@ModelAttribute("experienceItems")
-	public Collection<Experience> getExperienceItems(){
-		return (Collection<Experience>) experienceService.findAll();
+	@ModelAttribute("educationItems")
+	public Collection<Education> getEducationItems(){
+		return (Collection<Education>) educationService.findAll();
 	}
 	
 }

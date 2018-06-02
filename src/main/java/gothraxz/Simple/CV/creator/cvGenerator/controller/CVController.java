@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import gothraxz.Simple.CV.creator.cvGenerator.UserManagementFacade;
 import gothraxz.Simple.CV.creator.cvGenerator.pdfGenerator.Generator;
-import gothraxz.Simple.CV.creator.userManagement.experience.entity.Experience;
 import gothraxz.Simple.CV.creator.userManagement.person.dto.PersonDTO;
 
 @Controller

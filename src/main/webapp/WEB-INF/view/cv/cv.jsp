@@ -38,6 +38,37 @@
 	</div>
 	
 	<div>
+	<h3>Education:</h3>
+		<table style="width:100%" >
+			<tr>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Details</th>
+				<th>City</th>
+			</tr>
+			<c:forEach items = "${personDto.education}" var = "edu">
+				<tr>
+					<td align="center" valign="middle">
+						<c:out value = "${edu.startDate}"/>
+					</td>
+					<td align="center" valign="middle">
+						<c:out value = "${edu.endDate}"/>
+					</td>
+					<td align="center" valign="middle">
+						<c:out value = "${edu.schoolName}"/><br>
+						<c:out value = "${edu.grade}"/><br>
+						<c:out value = "${edu.direction}"/><br>
+						<br>
+					</td>
+					<td align="center" valign="middle">
+						<c:out value = "${edu.city}"/>
+					</td>
+				</tr>
+			</c:forEach>
+		</table> 
+	</div>	
+	
+	<div>
 	<h3>Experience:</h3>
 		<table style="width:100%" >
 			<tr>
@@ -67,6 +98,6 @@
 			</c:forEach>
 		</table> 
 	</div>
-
+	
 </body>
 </html>

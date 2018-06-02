@@ -6,29 +6,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Header</title>
+<title>Error - Wrong variables</title>
 </head>
 <body>
+	
+	<span>
+		<p>It seems, that one of parameters doesn't exist.</p>
+	</span>
 
-<div>
 	<span>
-		<a href="/Simple_CV_Creator/index"><button>Person Management</button></a>
+		<a href="/Simple_CV_Creator/index"> <button>Return to main page</button> </a>
 	</span>
-	
-	<span>
-		<a href="/Simple_CV_Creator/Address_Management/Main"><button>Address Management</button></a>
-	</span>
-	
-	<span>
-		<a href="/Simple_CV_Creator/Experience_Management/Main"><button>Experience Management</button></a>
-	</span>
-	
-	<span>
-		<a href="/Simple_CV_Creator/Education_Management/Main"><button>Education Management</button></a>
-	</span>
-	
-	<br><br>
-</div>
 
 </body>
 </html>

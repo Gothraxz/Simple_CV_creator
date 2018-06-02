@@ -10,4 +10,6 @@ public interface ExperienceRepository extends JpaRepository<Experience, Long> {
 
 	List<Experience> findAllByPersonId(long id);
 	
+	List<Experience> findAllByPersonIdOrderByStartDateDesc(long id);
+	
 }
