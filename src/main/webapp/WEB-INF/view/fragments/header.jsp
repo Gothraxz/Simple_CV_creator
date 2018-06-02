@@ -7,28 +7,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Header</title>
+
+<!-- BootStrap4 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+
 </head>
 <body>
 
-<div>
-	<span>
-		<a href="/Simple_CV_Creator/index"><button>Person Management</button></a>
-	</span>
-	
-	<span>
-		<a href="/Simple_CV_Creator/Address_Management/Main"><button>Address Management</button></a>
-	</span>
-	
-	<span>
-		<a href="/Simple_CV_Creator/Experience_Management/Main"><button>Experience Management</button></a>
-	</span>
-	
-	<span>
-		<a href="/Simple_CV_Creator/Education_Management/Main"><button>Education Management</button></a>
-	</span>
-	
-	<br><br>
+<div class="container-fluid bg-secondary">
+	<br>
+	<div class="text-center">
+		<div class="btn-group btn-group-lg">
+			<a href="/Simple_CV_Creator/index" class="btn btn-light">
+				Person Management
+			</a>
+			<a href="/Simple_CV_Creator/Address_Management/Main" class="btn btn-light">
+				Address Management
+			</a>
+			<a href="/Simple_CV_Creator/Experience_Management/Main" class="btn btn-light">
+				Experience Management
+			</a>
+			<a href="/Simple_CV_Creator/Education_Management/Main" class="btn btn-light">
+				Education Management
+			</a>
+		</div>
+		<br>
+		<br>
+	</div>
 </div>
-
+<br>
 </body>
 </html>

@@ -57,7 +57,7 @@ public class AddressController {
 			return "address/addressAdd";
 		}
 		
-		return "redirect:/Simple_CV_Creator/index";
+		return "redirect:/Simple_CV_Creator/Address_Management/Main";
 	}
 	
 	@GetMapping(value = "{id}/Details")
@@ -92,7 +92,7 @@ public class AddressController {
 				address.setPerson(person.get());
 				addressService.save(address);				
 			}
-			return "redirect:/Simple_CV_Creator/index";
+			return "redirect:/Simple_CV_Creator/Address_Management/Main";
 		}
 		
 		return "address/addressEdit";
@@ -120,7 +120,7 @@ public class AddressController {
 			addressService.deleteById(addressId);				
 		}
 		
-		return "redirect:/Simple_CV_Creator/index";
+		return "redirect:/Simple_CV_Creator/Address_Management/Main";
 	}
 	
 	@ModelAttribute("personItems")

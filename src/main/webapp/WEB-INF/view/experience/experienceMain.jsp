@@ -7,21 +7,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Simple CV Creator - experience management</title>
+
+<!-- BootStrap4 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+
 </head>
-<body>
+<body class="bg-dark text-white">
 
 	<div id="header">
 	    <jsp:include page="../fragments/header.jsp"/>
 	</div>
 
-	<div>
+	<div class="container-fluid">
 	<h3>Experience List:</h3>
 	
-	<table style="width:100%" >
+	<table class="table table-dark table-hover">
 		<tr>
-			<th>Full Name</th>
-			<th>City</th>
-			<th>Action</th>
+			<th class="text-center">Full Name</th>
+			<th class="text-center">City</th>
+			<th class="text-center">Action</th>
 		</tr>
 		<c:forEach items = "${personItems}" var = "person">
 			<tr>
@@ -32,8 +39,12 @@
 					<c:out value = "${person.address.city}"/>
 				</td>
 				<td align="center" valign="middle">
-					<a href="/Simple_CV_Creator/Experience_Management/${person.id}/Details"><button>Experience Details</button></a>
-					<a href="/Simple_CV_Creator/Person_Management/${person.id}/Details"><button>Person Details</button></a>
+					<a href="/Simple_CV_Creator/Experience_Management/${person.id}/Details">
+						<button  class="btn btn-info">Experience Details</button>
+					</a>
+					<a href="/Simple_CV_Creator/Person_Management/${person.id}/Details">
+						<button class="btn btn-success">Person Details</button>
+					</a>
 				</td>
 			</tr>
 		</c:forEach>

@@ -7,24 +7,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Personal information</title>
+
+<!-- BootStrap4 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+
 </head>
-<body>
+<body class="bg-dark text-white">
 
-	<span>
-		<a href="/Simple_CV_Creator/index"> <button>Return to main page</button> </a>
-	</span>
-
-<h1>Person Details:</h1>
-
-		First Name: <c:out value = "${person.firstName}"/><br>
-		Last Name: <c:out value = "${person.lastName}"/><br>
-		Birth Date: <c:out value = "${person.birthday}"/><br>
-		Phone Number: <c:out value = "${person.phonenumber}"/><br>
-		E-mail: <c:out value = "${person.email}"/><br>
+	<div class="container">
+		<br>
+		<span>
+			<a href="/Simple_CV_Creator/index" class="btn btn-warning">
+				Return to main page
+			</a>
+		</span>
 		<br>
 		<br>
-		<a href="Edit"><button>Edit</button></a>
-		<a href="Delete"><button>Delete</button></a>
-
+	</div>
+	
+	<div class="container">
+		<h1>Person Details:</h1>
+	
+		<b>First Name: </b><c:out value = "${person.firstName}"/><br>
+		<b>Last Name: </b><c:out value = "${person.lastName}"/><br>
+		<b>Birth Date: </b><c:out value = "${person.birthday}"/><br>
+		<b>Phone Number: </b><c:out value = "${person.phonenumber}"/><br>
+		<b>E-mail: </b><c:out value = "${person.email}"/><br>
+		<br>
+		<br>
+		<a href="Edit" class="btn btn-info">
+			Edit
+		</a>
+		<a href="Delete" class="btn btn-danger">
+			Delete
+		</a>
+	</div>
 </body>
 </html>

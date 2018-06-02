@@ -58,7 +58,7 @@ public class ExperienceController {
 			return "experience/experienceAdd";
 		}
 		
-		return "redirect:/Simple_CV_Creator/index";
+		return "redirect:/Simple_CV_Creator/Experience_Management/Main";
 	}
 	
 	@GetMapping(value = "{personId}/Details")
@@ -98,7 +98,7 @@ public class ExperienceController {
 				experience.setPerson(person.get());
 				experienceService.save(experience);				
 			}
-			return "redirect:/Simple_CV_Creator/index";
+			return "redirect:/Simple_CV_Creator/Experience_Management/Main";
 		}
 		
 		return "experience/experienceEdit";
@@ -137,7 +137,7 @@ public class ExperienceController {
 			experienceService.deleteById(id);
 		}
 		
-		return "redirect:/Simple_CV_Creator/index";
+		return "redirect:/Simple_CV_Creator/Experience_Management/Main";
 	}
 	
 	@ModelAttribute("personItems")

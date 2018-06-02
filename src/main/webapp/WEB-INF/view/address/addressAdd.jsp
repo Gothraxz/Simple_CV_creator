@@ -6,36 +6,63 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Address information - create</title>
+
+<!-- BootStrap4 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+
 </head>
-<body>
+<body class="bg-dark text-white">
 
-	<span>
-		<a href="/Simple_CV_Creator/index"> <button>Return to main page</button> </a>
-	</span>
+	<div class="container">
+		<br>
+		<span>
+			<a href="/Simple_CV_Creator/index" class="btn btn-success">
+				Return to main page
+			</a>
+		</span>
+		<span>
+			<a href="/Simple_CV_Creator/Address_Management/Main" class="btn btn-info">
+				Return to address management
+			</a>
+		</span>
+		<br>
+		<br>
+	</div>
 
-	<h1>Please add address details:</h1>
-	
-	<form:form method="POST" modelAttribute="address">
-	<%-- Person: <form:select path="person" items="${personItems}" multiple="false" 
-	itemValue="id" itemLabel="fullName"/>
-	<form:errors path="fullName" /> --%>
-	Postal code: <form:input path="postalCode"/>
-	<form:errors path="postalCode" />
-	<br>
-	City: <form:input path="city"/>
-	<form:errors path="city" />
-	<br>
-	Street Name: <form:input path="street"/>
-	<form:errors path="street" />
-	<br>
-	Address 1: <form:input path="buildingNumber"/>
-	<form:errors path="buildingNumber" />
-	<br>
-	Address 2: <form:input path="doorNumber"/>
-	<form:errors path="doorNumber" />
-	<br>
-	<input type="submit" value="submit">
-	</form:form>
-	
+	<div class="container">
+		<h1>Please add address details:</h1>
+		
+		<form:form method="POST" modelAttribute="address">
+		<div class="form-group">
+			<label>Postal code:</label>
+			<form:input path="postalCode" class="form-control"/>
+			<form:errors path="postalCode" class="badge badge-danger"/>
+		</div>
+		<div class="form-group">
+			<label>City:</label>
+			<form:input path="city" class="form-control"/>
+			<form:errors path="city" class="badge badge-danger"/>
+		</div>
+		<div class="form-group">
+			<label>Street Name:</label>
+			<form:input path="street" class="form-control"/>
+			<form:errors path="street" class="badge badge-danger"/>
+		</div>
+		<div class="form-group">
+			<label>Address 1:</label>
+			<form:input path="buildingNumber" class="form-control"/>
+			<form:errors path="buildingNumber" class="badge badge-danger"/>
+		</div>
+		<div class="form-group">
+			<label>Address 2:</label>
+			<form:input path="doorNumber" class="form-control"/>
+			<form:errors path="doorNumber" class="badge badge-danger"/>
+		</div>
+		<input class="btn btn-primary float-right" type="submit" value="submit">
+		</form:form>
+	</div>
 </body>
 </html>

@@ -59,7 +59,7 @@ public class EducationController {
 			return "education/educationAdd";
 		}
 		
-		return "redirect:/Simple_CV_Creator/index";
+		return "redirect:/Simple_CV_Creator/Education_Management/Main";
 	}
 	
 	@GetMapping(value = "{personId}/Details")
@@ -99,7 +99,7 @@ public class EducationController {
 				education.setPerson(person.get());
 				educationService.save(education);				
 			}
-			return "redirect:/Simple_CV_Creator/index";
+			return "redirect:/Simple_CV_Creator/Education_Management/Main";
 		}
 		
 		return "education/educationEdit";
@@ -138,7 +138,7 @@ public class EducationController {
 			educationService.deleteById(id);
 		}
 		
-		return "redirect:/Simple_CV_Creator/index";
+		return "redirect:/Simple_CV_Creator/Education_Management/Main";
 	}
 	
 	@ModelAttribute("personItems")

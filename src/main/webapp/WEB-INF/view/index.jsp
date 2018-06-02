@@ -7,26 +7,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Simple CV Creator - home</title>
+
+<!-- BootStrap4 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+
 </head>
-<body>
+<body class="bg-dark text-white">
 	
 	<div id="header">
 	    <jsp:include page="fragments/header.jsp"/>
 	</div>
 
-	<div>
-		<a href="Person_Management/Create"><button>Create new</button></a>
+	<div class="container-fluid">
+		<a href="Person_Management/Create">
+			<button class="btn btn-outline-primary float-right">Create new</button>
+		</a>
 	</div>
 
-	<div>
+	<br>
+
+	<div class="container-fluid">
 	<h3>Person List:</h3>
 	
-	<table style="width:100%" >
+	<table class="table table-dark table-hover">
 		<tr>
-			<th>Full Name</th>
-			<th>Phone Number</th>
-			<th>Email</th>
-			<th>Action</th>
+			<th class="text-center">Full Name</th>
+			<th class="text-center">Phone Number</th>
+			<th class="text-center">Email</th>
+			<th class="text-center">Action</th>
 		</tr>
 		<c:forEach items = "${personItems}" var = "person">
 			<tr>
@@ -40,10 +51,12 @@
 					<c:out value = "${person.email}"/>
 				</td>
 				<td align="center" valign="middle">
-					<a href="Person_Management/${person.id}/Details"><button>Details</button></a>
-					<a href="Person_Management/${person.id}/CV"><button>View CV</button></a>
-					<%-- <a href="Person_Management/${person.id}/Edit"><button>Edit</button></a>
-					<a href="Person_Management/${person.id}/Delete"><button>Delete</button></a> --%>
+					<a href="Person_Management/${person.id}/Details">
+						<button class="btn btn-info">Details</button>
+					</a>
+					<a href="Person_Management/${person.id}/CV">
+						<button class="btn btn-success">View CV</button>
+					</a>
 				</td>
 			</tr>
 		</c:forEach>

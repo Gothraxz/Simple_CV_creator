@@ -7,33 +7,58 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Personal information - edit</title>
+
+<!-- BootStrap4 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+
 </head>
-<body>
+<body class="bg-dark text-white">
 
-	<span>
-		<a href="/Simple_CV_Creator/index"> <button>Return to main page</button> </a>
-	</span>
-
-	<h1>Please edit personal details:</h1>
-	
-	<form:form method="POST" modelAttribute="person">
-	First Name: <form:input path="firstName"/>
-	<form:errors path="firstName" />
-	<br>
-	Last Name: <form:input path="lastName"/>
-	<form:errors path="lastName" />
-	<br>
-	Date of Birth: <form:input path="birthday"/>
-	<form:errors path="birthday" />
-	<br>
-	Phone Number: <form:input path="phonenumber"/>
-	<form:errors path="phonenumber" />
-	<br>
-	E-mail: <form:input path="email"/>
-	<form:errors path="email" />
-	<br>
-	<input type="submit" value="submit">
-	</form:form>
+	<div class="container">
+		<br>
+		<span>
+			<a href="/Simple_CV_Creator/index" class="btn btn-warning">
+				Return to main page
+			</a>
+		</span>
+		<br>
+		<br>
+	</div>
+	<div class="container">
+		<h1>Please edit personal details:</h1>
+		
+		<form:form method="POST" modelAttribute="person">
+			<div class="form-group">
+				<label>First Name:</label>
+				<form:input path="firstName" class="form-control"/>
+				<form:errors path="firstName" class="badge badge-danger"/>
+			</div>
+			<div class="form-group">
+				<label>Last Name:</label> 
+				<form:input path="lastName" class="form-control"/>
+				<form:errors path="lastName" class="badge badge-danger"/>
+			</div>
+			<div class="form-group">
+				<label>Date of Birth:</label>
+				<form:input path="birthday" class="form-control"/>
+				<form:errors path="birthday" class="badge badge-danger"/>			
+			</div>
+			<div class="form-group">
+				<label>Phone Number:</label>
+				<form:input path="phonenumber" class="form-control"/>
+				<form:errors path="phonenumber" class="badge badge-danger"/>		
+			</div>
+			<div class="form-group">
+				<label>E-mail:</label>
+				<form:input path="email" class="form-control"/>
+				<form:errors path="email" class="badge badge-danger"/>
+			</div>
+		<input class="btn btn-primary float-right" type="submit" value="submit">
+		</form:form>
+	</div>
 
 </body>
 </html>

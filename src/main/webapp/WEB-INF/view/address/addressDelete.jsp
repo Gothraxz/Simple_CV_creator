@@ -7,25 +7,47 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Address information - clear</title>
+
+<!-- BootStrap4 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+
 </head>
-<body>
+<body class="bg-dark text-white">
 
-	<h1>Delete address:</h1>
-	
-<!-- TODO person name  -->
-		Postal Code: <c:out value = "${address.postalCode}"/><br>
-		City: <c:out value = "${address.city}"/><br>
-		Street: <c:out value = "${address.street}"/><br>
-		Address 1: <c:out value = "${address.buildingNumber}"/><br>
-		Address 2: <c:out value = "${address.doorNumber}"/><br>
+	<div class="container">
 		<br>
+		<span>
+			<a href="/Simple_CV_Creator/Address_Management/Main" class="btn btn-info">
+				Return to address management
+			</a>
+		</span>
+		<br>
+		<br>
+	</div>
+
+	<div class="container">
+		<h1>Delete address entry:</h1>
 		
-	Please confirm:
-	<form:form method="POST" modelAttribute="address">
-	<button type="submit">Yes</button>
-	</form:form>
-
-	<a href="/Simple_CV_Creator/index"> <button>No</button> </a>
-
+			<b>Postal Code: </b><c:out value = "${address.postalCode}"/><br>
+			<b>City: </b><c:out value = "${address.city}"/><br>
+			<b>Street: </b><c:out value = "${address.street}"/><br>
+			<b>Address 1: </b><c:out value = "${address.buildingNumber}"/><br>
+			<b>Address 2: </b><c:out value = "${address.doorNumber}"/><br>
+			<br>
+			
+		<h5>Please confirm:</h5>
+		<div class=" container row">
+			<form:form method="POST" modelAttribute="address">
+				<button type="submit" class="btn btn-danger"> Yes </button>
+			</form:form>
+		
+			<a href="/Simple_CV_Creator/index">
+				<button class="btn btn-warning"> No </button>
+			</a>
+		</div>
+	</div>
 </body>
 </html>

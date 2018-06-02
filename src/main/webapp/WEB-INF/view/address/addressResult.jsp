@@ -7,33 +7,58 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Address information</title>
+
+<!-- BootStrap4 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
+
 </head>
-<body>
+<body class="bg-dark text-white">
 
-	<span>
-		<a href="/Simple_CV_Creator/index"> <button>Return to main page</button> </a>
-	</span>
-
-<h1>Address Details:</h1>
-<!-- TODO person name  -->
-
-<c:choose>
-	<c:when test="${empty address}">
-		<p>Address not found, please add new address:</p>
-		<a href="Create"><button>Create</button></a>
-	</c:when>
-	<c:otherwise>
-		Postal Code: <c:out value = "${address.postalCode}"/><br>
-		City: <c:out value = "${address.city}"/><br>
-		Street: <c:out value = "${address.street}"/><br>
-		Address 1: <c:out value = "${address.buildingNumber}"/><br>
-		Address 2: <c:out value = "${address.doorNumber}"/><br>
+	<div class="container">
+		<br>
+		<span>
+			<a href="/Simple_CV_Creator/index" class="btn btn-success">
+				Return to main page
+			</a>
+		</span>
+		<span>
+			<a href="/Simple_CV_Creator/Address_Management/Main" class="btn btn-info">
+				Return to address management
+			</a>
+		</span>
 		<br>
 		<br>
-		<a href="Edit"><button>Edit</button></a>
-		<a href="Delete"><button>Delete</button></a>
-	</c:otherwise>
-</c:choose>
+	</div>
 
+	<div class="container">
+		<h1>Address Details:</h1>
+		
+		<c:choose>
+			<c:when test="${empty address}">
+				<p>Address not found, please add new address:</p>
+				<a href="Create">
+					<button class="btn btn-outline-primary float-left">Create</button>
+				</a>
+			</c:when>
+			<c:otherwise>
+				<b>Postal Code: </b><c:out value = "${address.postalCode}"/><br>
+				<b>City: </b><c:out value = "${address.city}"/><br>
+				<b>Street: </b><c:out value = "${address.street}"/><br>
+				<b>Address 1: </b><c:out value = "${address.buildingNumber}"/><br>
+				<b>Address 2: </b><c:out value = "${address.doorNumber}"/><br>
+				<br>
+				<br>
+				<a href="Edit">
+					<button class="btn btn-info">Edit</button>
+				</a>
+				<a href="Delete">
+					<button class="btn btn-danger">Delete</button>
+				</a>
+			</c:otherwise>
+		</c:choose>
+	</div>
 </body>
 </html>
