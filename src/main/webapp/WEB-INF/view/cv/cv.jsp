@@ -15,96 +15,106 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
 
 </head>
-<body>
+<body class="bg-dark text-white">
 
-	<span>
-		<a href="/Simple_CV_Creator/index"> <button>Return to main page</button> </a>
-	</span>
-	<span>
-		<a href="/Simple_CV_Creator/Person_Management/${personDto.id}/CV/success"> <button>Generate PDF file</button> </a>
-	</span>
-	
-	<h2>CV Preview</h2>
-	
-	<div>
-	<h3>Personal information:</h3>
-		First Name: <c:out value = "${personDto.firstName}"/><br>
-		Last Name: <c:out value = "${personDto.lastName}"/><br>
-		Birth Date: <c:out value = "${personDto.birthday}"/><br>
-		Phone Number: <c:out value = "${personDto.phonenumber}"/><br>
-		E-mail: <c:out value = "${personDto.email}"/><br>
+	<div class="container">
+		<span>
+			<a href="/Simple_CV_Creator/index">
+				<button class="btn btn-outline-primary">Return to main page</button>
+			</a>
+		</span>
+		<span>
+			<a href="/Simple_CV_Creator/Person_Management/${personDto.id}/CV/success">
+				<button class="btn btn-outline-success">Generate PDF file</button>
+			</a>
+		</span>
 	</div>
-	
-	<div>
-	<h3>Address:</h3>
-		Postal Code: <c:out value = "${personDto.address.postalCode}"/><br>
-		City: <c:out value = "${personDto.address.city}"/><br>
-		Street: <c:out value = "${personDto.address.street}"/><br>
-		Address 1: <c:out value = "${personDto.address.buildingNumber}"/><br>
-		Address 2: <c:out value = "${personDto.address.doorNumber}"/><br>
-	</div>
-	
-	<div>
-	<h3>Education:</h3>
-		<table style="width:100%" >
-			<tr>
-				<th>Start Date</th>
-				<th>End Date</th>
-				<th>Details</th>
-				<th>City</th>
-			</tr>
-			<c:forEach items = "${personDto.education}" var = "edu">
+	<div class="container">
+		<br>
+		<h1>CV Preview:</h1>
+		<br>
+		<div class="container">
+			<h3>Personal information:</h3>
+			<b>First Name: </b><c:out value = "${personDto.firstName}"/><br>
+			<b>Last Name: </b><c:out value = "${personDto.lastName}"/><br>
+			<b>Birth Date: </b><c:out value = "${personDto.birthday}"/><br>
+			<b>Phone Number: </b><c:out value = "${personDto.phonenumber}"/><br>
+			<b>E-mail: </b><c:out value = "${personDto.email}"/><br>
+			<br>
+		</div>
+		
+		<div class="container">
+			<h3>Address:</h3>
+			<b>Postal Code: </b><c:out value = "${personDto.address.postalCode}"/><br>
+			<b>City: </b><c:out value = "${personDto.address.city}"/><br>
+			<b>Street: </b><c:out value = "${personDto.address.street}"/><br>
+			<b>Address 1: </b><c:out value = "${personDto.address.buildingNumber}"/><br>
+			<b>Address 2: </b><c:out value = "${personDto.address.doorNumber}"/><br>
+			<br>
+		</div>
+		
+		<div class="container-fluid">
+		<h3>Education:</h3>
+			<table class="table table-dark table-hover">
 				<tr>
-					<td align="center" valign="middle">
-						<c:out value = "${edu.startDate}"/>
-					</td>
-					<td align="center" valign="middle">
-						<c:out value = "${edu.endDate}"/>
-					</td>
-					<td align="center" valign="middle">
-						<c:out value = "${edu.schoolName}"/><br>
-						<c:out value = "${edu.grade}"/><br>
-						<c:out value = "${edu.direction}"/><br>
-						<br>
-					</td>
-					<td align="center" valign="middle">
-						<c:out value = "${edu.city}"/>
-					</td>
+					<th class="text-center">Start Date</th>
+					<th class="text-center">End Date</th>
+					<th class="text-center">City</th>					
+					<th class="text-center">Details</th>
 				</tr>
-			</c:forEach>
-		</table> 
-	</div>	
-	
-	<div>
-	<h3>Experience:</h3>
-		<table style="width:100%" >
-			<tr>
-				<th>Start Date</th>
-				<th>End Date</th>
-				<th>Details</th>
-				<th>Task Description</th>
-			</tr>
-			<c:forEach items = "${personDto.experiences}" var = "exp">
+				<c:forEach items = "${personDto.education}" var = "edu">
+					<tr>
+						<td align="center" valign="middle">
+							<c:out value = "${edu.startDate}"/>
+						</td>
+						<td align="center" valign="middle">
+							<c:out value = "${edu.endDate}"/>
+						</td>
+						<td align="center" valign="middle">
+							<c:out value = "${edu.city}"/>
+						</td>
+						<td align="center" valign="middle">
+							<c:out value = "${edu.schoolName}"/><br>
+							<c:out value = "${edu.grade}"/><br>
+							<c:out value = "${edu.direction}"/><br>
+							<br>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<br>
+		</div>	
+		
+		<div class="container-fluid">
+		<h3>Experience:</h3>
+			<table class="table table-dark table-hover">
 				<tr>
-					<td align="center" valign="middle">
-						<c:out value = "${exp.startDate}"/>
-					</td>
-					<td align="center" valign="middle">
-						<c:out value = "${exp.endDate}"/>
-					</td>
-					<td align="center" valign="middle">
-						<c:out value = "${exp.companyName}"/><br>
-						<c:out value = "${exp.city}"/><br>
-						<c:out value = "${exp.jobTitle}"/><br>
-						<br>
-					</td>
-					<td align="center" valign="middle">
-						<c:out value = "${exp.taskDescription}"/>
-					</td>
+					<th class="text-center">Start Date</th>
+					<th class="text-center">End Date</th>
+					<th class="text-center">Details</th>
+					<th class="text-center">Task Description</th>
 				</tr>
-			</c:forEach>
-		</table> 
+				<c:forEach items = "${personDto.experiences}" var = "exp">
+					<tr>
+						<td align="center" valign="middle">
+							<c:out value = "${exp.startDate}"/>
+						</td>
+						<td align="center" valign="middle">
+							<c:out value = "${exp.endDate}"/>
+						</td>
+						<td align="center" valign="middle">
+							<c:out value = "${exp.companyName}"/><br>
+							<c:out value = "${exp.city}"/><br>
+							<c:out value = "${exp.jobTitle}"/><br>
+							<br>
+						</td>
+						<td align="center" valign="middle">
+							<c:out value = "${exp.taskDescription}"/>
+						</td>
+					</tr>
+				</c:forEach>
+			</table> 
+		</div>
 	</div>
-	
 </body>
 </html>

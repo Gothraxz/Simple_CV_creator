@@ -23,6 +23,7 @@ import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.element.Text;
 import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
+import com.itextpdf.layout.property.VerticalAlignment;
 
 import gothraxz.Simple.CV.creator.userManagement.address.entity.Address;
 import gothraxz.Simple.CV.creator.userManagement.education.entity.Education;
@@ -33,6 +34,11 @@ import gothraxz.Simple.CV.creator.userManagement.person.dto.PersonDTO;
 public class Generator {
 
 	private static final String DESTINATION_FOLDER = "src/main/resources/public/";
+	
+	private static final String LEGAL_AGREEMENT = "I hereby give consent for my personal data " 
+			+ "included in my application to be processed for the purposes " 
+			+ "of the recruitment process under the Personal Data Protection Act " 
+			+ "as of 29 August 1997, consolidated text: Journal of Laws 2016, item 922 as amended.";
 
 	public void createPdf(PersonDTO personDto) throws IOException {
 		if (personDto == null) {
@@ -95,6 +101,14 @@ public class Generator {
 			insertExperienceTable(document, experience);
 			
 		}
+		
+		document.add(
+				new Paragraph(LEGAL_AGREEMENT)
+				.setBackgroundColor(Color.GRAY)
+				.setFontColor(Color.WHITE)
+				.setFontSize(6)
+				.setTextAlignment(TextAlignment.CENTER)
+				.setVerticalAlignment(VerticalAlignment.BOTTOM));
 		
 		document.close();
 	}

@@ -14,10 +14,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
 
+<style>
+#center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+</style>
 </head>
 <body class="bg-dark text-white">
 
-		<div class="align-middle">
+		<div id="center">
 			<div>
 				<h2>Crated PDF file for ${personDto.fullName}</h2>
 			</div>

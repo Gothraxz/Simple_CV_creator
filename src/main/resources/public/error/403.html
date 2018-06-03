@@ -10,15 +10,28 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script> 
 
+<style>
+#center {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+</style>
 </head>
 <body class="bg-danger text-white">
 
-	<span>
-		<p>Access forbidden, press button to return to main page:</p>
-	</span>
-	<span>
-		<a href="/Simple_CV_Creator/index"> <button>Return to main page</button> </a>
-	</span>
-
+	<div id="center">
+		<span>
+			<h1>Access forbidden, press button to return to main page:</h1>
+		</span>
+		<span>
+			<a href="/Simple_CV_Creator/index">
+				<button class="btn btn-outline-warning">Return to main page</button>
+			</a>
+		</span>
+	</div>
+	
 </body>
 </html>

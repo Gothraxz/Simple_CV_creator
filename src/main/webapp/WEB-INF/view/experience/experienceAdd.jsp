@@ -63,7 +63,7 @@
 			</div>
 			<div class="form-group">
 				<label>Task Description:</label>
-				<form:input path="taskDescription" class="form-control"/>
+				<form:textarea path="taskDescription" class="form-control" rows="5"/>
 				<form:errors path="taskDescription" class="badge badge-danger"/>
 			</div>
 		<input class="btn btn-primary float-right" type="submit" value="submit">

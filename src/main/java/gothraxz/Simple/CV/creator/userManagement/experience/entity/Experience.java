@@ -2,6 +2,7 @@ package gothraxz.Simple.CV.creator.userManagement.experience.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,7 +18,6 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import gothraxz.Simple.CV.creator.userManagement.education.entity.Education;
 import gothraxz.Simple.CV.creator.userManagement.person.entity.Person;
 
 @Entity
@@ -52,6 +52,7 @@ public class Experience implements Comparable<Experience> {
 	private String jobTitle;
 	
 	@NotBlank
+	@Column(length = 4000)
 	private String taskDescription;
 
 	public long getId() {

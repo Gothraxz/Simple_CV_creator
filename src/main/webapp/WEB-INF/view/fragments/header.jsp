@@ -17,20 +17,20 @@
 </head>
 <body>
 
-<div class="container-fluid bg-secondary">
+<div class="container-fluid bg-dark text-white"">
 	<br>
 	<div class="text-center">
 		<div class="btn-group btn-group-lg">
-			<a href="/Simple_CV_Creator/index" class="btn btn-light">
+			<a href="/Simple_CV_Creator/index" class="btn btn-primary">
 				Person Management
 			</a>
-			<a href="/Simple_CV_Creator/Address_Management/Main" class="btn btn-light">
+			<a href="/Simple_CV_Creator/Address_Management/Main" class="btn btn-primary">
 				Address Management
 			</a>
-			<a href="/Simple_CV_Creator/Experience_Management/Main" class="btn btn-light">
+			<a href="/Simple_CV_Creator/Experience_Management/Main" class="btn btn-primary">
 				Experience Management
 			</a>
-			<a href="/Simple_CV_Creator/Education_Management/Main" class="btn btn-light">
+			<a href="/Simple_CV_Creator/Education_Management/Main" class="btn btn-primary">
 				Education Management
 			</a>
 		</div>
